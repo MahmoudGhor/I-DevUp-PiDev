@@ -8,17 +8,34 @@ package last;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import com.sun.org.apache.xerces.internal.util.URI;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import services.ServiceClientBd;
 
 /**
@@ -27,7 +44,7 @@ import services.ServiceClientBd;
  * @author mahmo
  */
 public class SignupController implements Initializable {
-
+    ServiceClientBd servCl = new ServiceClientBd();
     @FXML
     private AnchorPane pane2;
     private JFXComboBox<String> type;
@@ -49,11 +66,6 @@ public class SignupController implements Initializable {
     private JFXTextField username;
     @FXML
     private Label labelusername;
-    
-    /**
-     * Initializes the controller class.
-     */
-     ServiceClientBd servCl = new ServiceClientBd();
     @FXML
     private Label verifEmail;
     @FXML
@@ -62,9 +74,17 @@ public class SignupController implements Initializable {
     private JFXTextField email;
     @FXML
     private JFXTextField confirmationEmail;
+    List<String> lstFile;
+    @FXML
+    private ImageView view2;
+    @FXML
+    private Label labelImage;
+    @FXML
+    private JFXButton Annuler;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         pane2.setVisible(false);
+        view2.setVisible(false);
         ObservableList<String> listeVille = FXCollections.observableArrayList(
         "Tunis","Sfax"
         );
@@ -73,6 +93,9 @@ public class SignupController implements Initializable {
         "Homme","Femme"
         );
         sexe.setItems(listeUser);
+        lstFile = new ArrayList<>();
+        lstFile.add("*.png");
+        lstFile.add("*.jpg");
     }    
 
     @FXML
@@ -116,8 +139,21 @@ public class SignupController implements Initializable {
         }
         if (servCl.searchClientByEmail(email.getText())==false)
         {
-            verifEmail.setText("");
+                String masque = "^[a-zA-Z]+[a-zA-Z0-9\\._-]*[a-zA-Z0-9]@[a-zA-Z]+"+"[a-zA-Z0-9\\._-]*[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}$";
+        Pattern pattern = Pattern.compile(masque);
+        Matcher controler = pattern.matcher(email.getText());
+        
+        if (controler.matches()){            
+            verifEmail.setVisible(false);                          
         }
+        else{
+            verifEmail.setVisible(true);
+         verifEmail.setText("verifier votre mail !");
+        
+        
+    }
+        }
+        
     }
 
     @FXML
@@ -130,6 +166,60 @@ public class SignupController implements Initializable {
         {
             confEmail.setText("Verifier votre email");
         }
+    }
+
+    @FXML
+    private void ChargeImage(MouseEvent event) throws MalformedURLException{
+         FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("word file", lstFile));
+       File f = fc.showOpenDialog(null);
+        
+        if (f!=null)
+        {
+            //lab.setText(f.getAbsolutePath());
+            Image image = new Image(f.toURI().toURL().toString());
+            view2.setImage(image) ;
+            view2.setVisible(true);
+            view1.setVisible(false);
+            labelImage.setText("Cliquez sur l'image pour la changer!");
+        }
+        
+    }
+
+    @FXML
+    private void ChangeImage(MouseEvent event) throws MalformedURLException{
+        
+           FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("word file", lstFile));
+       File f = fc.showOpenDialog(null);
+        
+        if (f!=null)
+        {
+            //lab.setText(f.getAbsolutePath());
+            Image image = new Image(f.toURI().toURL().toString());
+            view2.setImage(image) ;
+            view2.setVisible(true);
+            view1.setVisible(false);
+            labelImage.setText("Cliquez sur l'image pour la changer!");
+        }
+    }
+
+    @FXML
+    private void AnnulerClick(MouseEvent event) {
+                Parent root = null;
+                        try {
+                            root = FXMLLoader.load(getClass().getResource("SignIn.fxml"));
+                        } catch (IOException ex) {
+                            Logger.getLogger(SplashScreenController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+        
+        Scene scene = new Scene(root);
+        Stage stage  = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(scene);
+        stage.show();
+        pane1.getScene().getWindow().hide();
+        
     }
 
 

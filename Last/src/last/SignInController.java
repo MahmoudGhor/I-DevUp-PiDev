@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXPopup;
 import java.awt.Color;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +22,10 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -42,6 +46,8 @@ public class SignInController implements Initializable {
  //   @FXML
  //   private JFXPopup pop;
 //     final Popup popup = new Popup();
+    @FXML
+    private ImageView close;
  
 
       
@@ -82,6 +88,20 @@ public class SignInController implements Initializable {
         stage.show();
         frame.getScene().getWindow().hide();
        
+    }
+
+    @FXML
+    private void Close(MouseEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Vous allez quitter l'application");
+        alert.setHeaderText("Vous allez quitter l'application");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+                System.exit(0);
+        } else {
+            alert.close();
+        }
+        
     }
 
    

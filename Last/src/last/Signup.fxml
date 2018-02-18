@@ -17,12 +17,12 @@
             <Font name="Century" size="32.0" />
          </font>
       </Label>
-      <ImageView fx:id="view1" fitHeight="179.0" fitWidth="188.0" layoutX="65.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="view2" fitHeight="245.0" fitWidth="237.0" layoutX="88.0" layoutY="165.0" onMouseClicked="#ChangeImage" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="view1" fitHeight="179.0" fitWidth="188.0" layoutX="112.0" layoutY="188.0" onMouseClicked="#ChargeImage" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/img.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="179.0" fitWidth="240.0" layoutX="41.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true" />
       <AnchorPane fx:id="pane1" layoutX="291.0" layoutY="104.0" prefHeight="361.0" prefWidth="528.0">
          <children>
             <JFXTextField fx:id="username" focusColor="#ababab" labelFloat="true" layoutX="59.0" layoutY="85.0" onKeyReleased="#verifusername" prefHeight="33.0" prefWidth="165.0" promptText="Nom d'utilisateur (*)" />
@@ -32,6 +32,11 @@
             <JFXPasswordField focusColor="#ababab" labelFloat="true" layoutX="309.0" layoutY="157.0" prefHeight="33.0" prefWidth="165.0" promptText="Mot de passe (*)" />
             <JFXPasswordField focusColor="#ababab" labelFloat="true" layoutX="309.0" layoutY="232.0" prefHeight="33.0" prefWidth="165.0" promptText="Confirmation mot de passe (*)" />
             <JFXButton fx:id="suivat1" layoutX="425.0" layoutY="326.0" onMouseClicked="#passinter2" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: #A48144;" text="Suivant" textFill="WHITE">
+               <font>
+                  <Font name="Century Schoolbook" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="Annuler" layoutX="309.0" layoutY="328.0" onMouseClicked="#AnnulerClick" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: #A48144;" text="Annuler" textFill="WHITE">
                <font>
                   <Font name="Century Schoolbook" size="12.0" />
                </font>
@@ -62,5 +67,6 @@
             </JFXButton>
          </children>
       </AnchorPane>
+      <Label fx:id="labelImage" layoutX="99.0" layoutY="402.0" prefHeight="17.0" prefWidth="200.0" textFill="#016f19" />
    </children>
 </AnchorPane>
