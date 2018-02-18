@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="435.0" prefWidth="647.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crudclient.ModifClientController">
+   <children>
+      <Label fx:id="username" layoutX="116.0" layoutY="138.0" prefHeight="25.0" prefWidth="76.0" />
+      <ImageView fx:id="photo" fitHeight="110.0" fitWidth="135.0" layoutX="72.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <JFXTextField fx:id="firstname" labelFloat="true" layoutX="48.0" layoutY="228.0" promptText="firstname" />
+      <JFXTextField fx:id="lastname" labelFloat="true" layoutX="48.0" layoutY="278.0" promptText="LastName" />
+      <JFXTextField fx:id="email" labelFloat="true" layoutX="44.0" layoutY="325.0" promptText="Email" />
+      <JFXTextField fx:id="phone" layoutX="306.0" layoutY="89.0" promptText="Phone" />
+      <JFXTextField fx:id="town" labelFloat="true" layoutX="306.0" layoutY="138.0" promptText="Town" />
+      <JFXTextField fx:id="address" labelFloat="true" layoutX="306.0" layoutY="193.0" promptText="Address" />
+      <JFXTextField fx:id="postalcode" layoutX="306.0" layoutY="241.0" promptText="PostalCode" />
+      <JFXTextField fx:id="facebook" layoutX="306.0" layoutY="291.0" promptText="Facebook" />
+      <JFXButton fx:id="btn" layoutX="461.0" layoutY="374.0" onMouseClicked="#save" text="Enregistrer">
+         <font>
+            <Font name="Bell MT" size="25.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnmdfimg" layoutX="111.0" layoutY="181.0" onAction="#changeimg" prefHeight="25.0" prefWidth="110.0" text="changer image" textAlignment="CENTER" textFill="#dd1313" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Chiller" size="20.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>
