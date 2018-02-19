@@ -29,8 +29,8 @@
             <JFXTextField fx:id="email" focusColor="#ababab" labelFloat="true" layoutX="59.0" layoutY="157.0" onKeyReleased="#verifEmail" prefHeight="33.0" prefWidth="165.0" promptText="Email (*)" />
             <JFXTextField fx:id="confirmationEmail" focusColor="#ababab" labelFloat="true" layoutX="59.0" layoutY="232.0" onKeyReleased="#ConfirmEmail" prefHeight="33.0" prefWidth="165.0" promptText="Confirmation Email (*)" />
             <JFXComboBox fx:id="sexe" focusColor="#ababab" labelFloat="true" layoutX="309.0" layoutY="85.0" onMouseClicked="#typeuser" prefHeight="33.0" prefWidth="165.0" promptText="sexe(*)" />
-            <JFXPasswordField focusColor="#ababab" labelFloat="true" layoutX="309.0" layoutY="157.0" prefHeight="33.0" prefWidth="165.0" promptText="Mot de passe (*)" />
-            <JFXPasswordField focusColor="#ababab" labelFloat="true" layoutX="309.0" layoutY="232.0" prefHeight="33.0" prefWidth="165.0" promptText="Confirmation mot de passe (*)" />
+            <JFXPasswordField fx:id="password" focusColor="#ababab" labelFloat="true" layoutX="309.0" layoutY="157.0" onKeyReleased="#controlMdp" prefHeight="33.0" prefWidth="165.0" promptText="Mot de passe (*)" />
+            <JFXPasswordField fx:id="confirmationMDP" focusColor="#ababab" labelFloat="true" layoutX="309.0" layoutY="232.0" onKeyReleased="#ConfirmMDP" prefHeight="33.0" prefWidth="165.0" promptText="Confirmation mot de passe (*)" />
             <JFXButton fx:id="suivat1" layoutX="425.0" layoutY="326.0" onMouseClicked="#passinter2" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: #A48144;" text="Suivant" textFill="WHITE">
                <font>
                   <Font name="Century Schoolbook" size="12.0" />
@@ -44,18 +44,20 @@
             <Label fx:id="labelusername" layoutX="61.0" layoutY="125.0" prefHeight="25.0" prefWidth="165.0" textFill="RED" />
             <Label fx:id="verifEmail" layoutX="60.0" layoutY="195.0" prefHeight="25.0" prefWidth="165.0" textFill="RED" />
             <Label fx:id="confEmail" layoutX="59.0" layoutY="271.0" prefHeight="25.0" prefWidth="165.0" textFill="RED" />
+            <Label fx:id="labelMdp" layoutX="307.0" layoutY="199.0" prefHeight="25.0" prefWidth="165.0" textFill="RED" />
+            <Label fx:id="labelConfirmationMdp" layoutX="313.0" layoutY="276.0" prefHeight="33.0" prefWidth="165.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="pane2" layoutX="291.0" layoutY="104.0" prefHeight="361.0" prefWidth="528.0">
          <children>
-            <JFXTextField focusColor="#ababab" labelFloat="true" layoutX="59.0" layoutY="85.0" prefHeight="33.0" prefWidth="165.0" promptText="Nom (*)" />
-            <JFXTextField focusColor="#ababab" labelFloat="true" layoutX="59.0" layoutY="157.0" prefHeight="33.0" prefWidth="165.0" promptText="Prenom (*)" />
-            <JFXTextField focusColor="#ababab" layoutX="59.0" layoutY="232.0" prefHeight="33.0" prefWidth="165.0" promptText="Numero telephone" />
+            <JFXTextField fx:id="Nom" focusColor="#ababab" labelFloat="true" layoutX="59.0" layoutY="85.0" prefHeight="33.0" prefWidth="165.0" promptText="Nom (*)" />
+            <JFXTextField fx:id="Prenom" focusColor="#ababab" labelFloat="true" layoutX="59.0" layoutY="157.0" prefHeight="33.0" prefWidth="165.0" promptText="Prenom (*)" />
+            <JFXTextField fx:id="Tel" focusColor="#ababab" layoutX="59.0" layoutY="232.0" onKeyReleased="#verifNumber2" onKeyTyped="#verifNumber" prefHeight="33.0" prefWidth="165.0" promptText="Numero telephone" />
             <JFXComboBox fx:id="ville" focusColor="#ababab" layoutX="309.0" layoutY="85.0" onMouseClicked="#chargeville" prefHeight="33.0" prefWidth="165.0" promptText="Ville (*)" />
-            <JFXTextField focusColor="#ababab" labelFloat="true" layoutX="310.0" layoutY="149.0" prefHeight="41.0" prefWidth="165.0" promptText="Adresse (*)" />
-            <JFXTextField focusColor="#ababab" labelFloat="true" layoutX="309.0" layoutY="224.0" prefHeight="41.0" prefWidth="165.0" promptText="Code Postal (*)" />
-            <JFXTextField focusColor="#ababab" labelFloat="true" layoutX="59.0" layoutY="285.0" prefHeight="41.0" prefWidth="165.0" promptText="FACEBOOK" />
-            <JFXButton fx:id="save" layoutX="425.0" layoutY="326.0" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: #A48144;" text="Enregistrer" textFill="WHITE">
+            <JFXTextField fx:id="Adresse" focusColor="#ababab" labelFloat="true" layoutX="310.0" layoutY="149.0" prefHeight="41.0" prefWidth="165.0" promptText="Adresse (*)" />
+            <JFXTextField fx:id="CodePostal" focusColor="#ababab" labelFloat="true" layoutX="309.0" layoutY="224.0" onKeyTyped="#VerifNumberCodePostal" prefHeight="41.0" prefWidth="165.0" promptText="Code Postal (*)" />
+            <JFXTextField fx:id="facebook" focusColor="#ababab" labelFloat="true" layoutX="59.0" layoutY="285.0" prefHeight="41.0" prefWidth="165.0" promptText="FACEBOOK" />
+            <JFXButton fx:id="save" layoutX="425.0" layoutY="326.0" onMouseClicked="#save" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: #A48144;" text="Enregistrer" textFill="WHITE">
                <font>
                   <Font name="Century Schoolbook" size="12.0" />
                </font>
@@ -65,6 +67,7 @@
                   <Font name="Century Schoolbook" size="12.0" />
                </font>
             </JFXButton>
+            <Label fx:id="telConfirmation" layoutX="59.0" layoutY="275.0" prefHeight="17.0" prefWidth="165.0" textFill="RED" />
          </children>
       </AnchorPane>
       <Label fx:id="labelImage" layoutX="99.0" layoutY="402.0" prefHeight="17.0" prefWidth="200.0" textFill="#016f19" />

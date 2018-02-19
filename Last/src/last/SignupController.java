@@ -7,6 +7,7 @@ package last;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.sun.org.apache.xerces.internal.util.URI;
 import java.io.File;
@@ -45,6 +46,20 @@ import services.ServiceClientBd;
  */
 public class SignupController implements Initializable {
     ServiceClientBd servCl = new ServiceClientBd();
+    boolean verifivationEmail = false;
+    boolean verifivationDoubleEmail = false;
+    boolean verificationUserName = false;
+    boolean verificationPassword =false;
+    boolean verificationDoublePassword=false;
+    boolean verificationNumero=false;
+    boolean verificationSexe=false;
+    boolean verificationNom=false;
+    boolean verificationPrenom=false;
+    boolean verificationVille=false;
+    boolean verificationAdresse=false;
+    boolean verificationCodePostal=false;
+    
+    
     @FXML
     private AnchorPane pane2;
     private JFXComboBox<String> type;
@@ -81,6 +96,28 @@ public class SignupController implements Initializable {
     private Label labelImage;
     @FXML
     private JFXButton Annuler;
+    @FXML
+    private JFXPasswordField password;
+    @FXML
+    private Label labelMdp;
+    @FXML
+    private JFXPasswordField confirmationMDP;
+    @FXML
+    private Label labelConfirmationMdp;
+    @FXML
+    private JFXTextField Nom;
+    @FXML
+    private JFXTextField Prenom;
+    @FXML
+    private JFXTextField Tel;
+    @FXML
+    private Label telConfirmation;
+    @FXML
+    private JFXTextField Adresse;
+    @FXML
+    private JFXTextField CodePostal;
+    @FXML
+    private JFXTextField facebook;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         pane2.setVisible(false);
@@ -123,10 +160,12 @@ public class SignupController implements Initializable {
         if (servCl.searchClientByUserName(username.getText())==true)
         {
             labelusername.setText("Nom d'utilisateur existe déja");
+            verificationUserName=false;
         }
         if (servCl.searchClientByUserName(username.getText())==false)
         {
             labelusername.setText("");
+            verificationUserName=true;
         }
         
     }
@@ -136,6 +175,7 @@ public class SignupController implements Initializable {
         if (servCl.searchClientByEmail(email.getText())==true)
         {
             verifEmail.setText("Email Existe déja");
+            verifivationEmail=false;
         }
         if (servCl.searchClientByEmail(email.getText())==false)
         {
@@ -144,11 +184,13 @@ public class SignupController implements Initializable {
         Matcher controler = pattern.matcher(email.getText());
         
         if (controler.matches()){            
-            verifEmail.setVisible(false);                          
+            verifEmail.setVisible(false); 
+            verifivationEmail=true;
         }
         else{
             verifEmail.setVisible(true);
          verifEmail.setText("verifier votre mail !");
+         verifivationEmail=false;
         
         
     }
@@ -161,10 +203,12 @@ public class SignupController implements Initializable {
         if (email.getText().equals(confirmationEmail.getText()))
         {
             confEmail.setText("");
+            verifivationDoubleEmail=true;
         }
         else
         {
             confEmail.setText("Verifier votre email");
+            verifivationDoubleEmail=false;
         }
     }
 
@@ -221,6 +265,143 @@ public class SignupController implements Initializable {
         pane1.getScene().getWindow().hide();
         
     }
+
+    @FXML
+    private void controlMdp(KeyEvent event) {
+        if (password.getText()=="")
+        {
+            labelMdp.setText("");
+            verificationPassword=false;
+        }
+        else if (password.getText().trim().length()<6)
+        {
+            labelMdp.setText("6 caractéres minimum");
+            verificationPassword=false;
+        }
+        else
+        {
+            labelMdp.setText("");
+            verificationPassword=true;
+        }
+    }
+
+    @FXML
+    private void ConfirmMDP(KeyEvent event) {
+          if (password.getText().equals(confirmationMDP.getText()))
+        {
+            confirmationMDP.setText("");
+            verificationDoublePassword=true;
+        }
+        else
+        {
+            confirmationMDP.setText("Verifier votre mot de passe");
+            verificationDoublePassword=false;
+        }
+    }
+
+
+    @FXML
+    private void verifNumber2(KeyEvent event) {
+        if (Tel.getText().trim().length()==8)
+        {
+            telConfirmation.setText("");
+            verificationNumero=true;
+        }
+        else
+        {
+            telConfirmation.setText("8 chiffres");
+            verificationNumero=false;
+        }
+    }
+
+    @FXML
+    private void verifNumber(KeyEvent ev) {
+            String c = ev.getCharacter();
+    if("1234567890".contains(c)) 
+    {
+    }
+    else {
+        ev.consume();
+    }
+    }
+
+    @FXML
+    private void save(MouseEvent event) {
+        //verification sexe
+        if (sexe.getValue()==null)
+        {
+            verificationSexe=false;
+        }
+        else 
+        {
+            verificationSexe=true;
+        }
+        
+        //verification Nom
+        if ((Nom.getText()==null)||(Nom.getText()==""))
+        {
+            verificationNom=false;
+        }
+        else
+        {
+            verificationNom=true;
+        }
+        
+        //verification Prenom
+         if ((Prenom.getText()==null)||(Prenom.getText()==""))
+        {
+            verificationPrenom=false;
+        }
+        else
+        {
+            verificationPrenom=true;
+        }
+         
+         //verification ville
+          if (ville.getValue()==null)
+        {
+            verificationVille=false;
+        }
+        else 
+        {
+            verificationVille=true;
+        }
+          
+          //verification Adresse
+         if ((Adresse.getText()==null)||(Adresse.getText()==""))
+        {
+            verificationAdresse=false;
+        }
+        else
+        {
+            verificationAdresse=true;
+        }  
+         
+         //verification code Postal
+          if ((CodePostal.getText()==null)||(CodePostal.getText()==""))
+        {
+            verificationCodePostal=false;
+        }
+        else
+        {
+            verificationCodePostal=true;
+        }
+    }
+
+    @FXML
+    private void VerifNumberCodePostal(KeyEvent ev) {
+             String c = ev.getCharacter();
+    if("1234567890".contains(c)) 
+    {
+    }
+    else {
+        ev.consume();
+    }
+    }
+
+    
+    
+    
 
 
 }
