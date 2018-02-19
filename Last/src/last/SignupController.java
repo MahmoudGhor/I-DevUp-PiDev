@@ -289,12 +289,12 @@ public class SignupController implements Initializable {
     private void ConfirmMDP(KeyEvent event) {
           if (password.getText().equals(confirmationMDP.getText()))
         {
-            confirmationMDP.setText("");
+            labelConfirmationMdp.setText("");
             verificationDoublePassword=true;
         }
         else
         {
-            confirmationMDP.setText("Verifier votre mot de passe");
+            labelConfirmationMdp.setText("Verifier votre mot de passe");
             verificationDoublePassword=false;
         }
     }
@@ -338,7 +338,7 @@ public class SignupController implements Initializable {
         }
         
         //verification Nom
-        if ((Nom.getText()==null)||(Nom.getText()==""))
+        if ((Nom.getText()==null)||("".equals(Nom.getText())))
         {
             verificationNom=false;
         }
@@ -348,7 +348,7 @@ public class SignupController implements Initializable {
         }
         
         //verification Prenom
-         if ((Prenom.getText()==null)||(Prenom.getText()==""))
+         if ((Prenom.getText()==null)||("".equals(Prenom.getText())))
         {
             verificationPrenom=false;
         }
@@ -368,17 +368,18 @@ public class SignupController implements Initializable {
         }
           
           //verification Adresse
-         if ((Adresse.getText()==null)||(Adresse.getText()==""))
+         if ((Adresse.getText()==null)||("".equals(Adresse.getText())))
         {
             verificationAdresse=false;
         }
         else
         {
             verificationAdresse=true;
+            System.out.println(Adresse.getText());
         }  
          
          //verification code Postal
-          if ((CodePostal.getText()==null)||(CodePostal.getText()==""))
+          if ((CodePostal.getText()==null)||("".equals(CodePostal.getText())))
         {
             verificationCodePostal=false;
         }
@@ -386,6 +387,14 @@ public class SignupController implements Initializable {
         {
             verificationCodePostal=true;
         }
+          if ((verifivationEmail==true)&&(verifivationDoubleEmail==true)&&(verificationUserName==true)&&(verificationDoublePassword==true)&&(verificationPassword==true)&&(verificationNumero==true)&&(verificationSexe==true)&&(verificationNom==true)&&(verificationPrenom==true)&&(verificationVille==true)&&(verificationAdresse==true)&&(verificationCodePostal==true))
+          {
+             
+          }
+          else 
+          {
+             
+          }
     }
 
     @FXML

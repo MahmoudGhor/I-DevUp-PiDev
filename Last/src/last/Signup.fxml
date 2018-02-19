@@ -56,7 +56,7 @@
             <JFXComboBox fx:id="ville" focusColor="#ababab" layoutX="309.0" layoutY="85.0" onMouseClicked="#chargeville" prefHeight="33.0" prefWidth="165.0" promptText="Ville (*)" />
             <JFXTextField fx:id="Adresse" focusColor="#ababab" labelFloat="true" layoutX="310.0" layoutY="149.0" prefHeight="41.0" prefWidth="165.0" promptText="Adresse (*)" />
             <JFXTextField fx:id="CodePostal" focusColor="#ababab" labelFloat="true" layoutX="309.0" layoutY="224.0" onKeyTyped="#VerifNumberCodePostal" prefHeight="41.0" prefWidth="165.0" promptText="Code Postal (*)" />
-            <JFXTextField fx:id="facebook" focusColor="#ababab" labelFloat="true" layoutX="59.0" layoutY="285.0" prefHeight="41.0" prefWidth="165.0" promptText="FACEBOOK" />
+            <JFXTextField fx:id="facebook" focusColor="#ababab" labelFloat="true" layoutX="59.0" layoutY="301.0" prefHeight="25.0" prefWidth="165.0" promptText="FACEBOOK" />
             <JFXButton fx:id="save" layoutX="425.0" layoutY="326.0" onMouseClicked="#save" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: #A48144;" text="Enregistrer" textFill="WHITE">
                <font>
                   <Font name="Century Schoolbook" size="12.0" />
